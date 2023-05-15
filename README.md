@@ -25,7 +25,7 @@ https://www.openhardware.io/view/33050
 
 Since information has to be returned if some functions are called they have to be provided with a sufficient **buffer** array. This also means that if you request 6 values but only provide an array with length 3, only the first 3 values will be filled in.
 
-# device.Get();
+# device.Get(short[] buffer, string data_type);
 
 Gets the value of device based on the data type. IMPORTANT!: Filtered values are calculated using the gliding average method and only for currently active devices. If a previously inactive device is asked for a filtered value it will first return an unfiltered value and activate the filter task. If a second value is requested before the task times out(currently a 10 second window) an actually filtered value will be returned. 
 **Example:** 
@@ -43,7 +43,7 @@ Data types:
 - second-filtered: second three data...
 - third-filtered:  ...
 
-# device.Set();
+# device.Set(byte value);
 
 Sets a value to an actuator and confirms the interaction through a reaction message
 
@@ -51,7 +51,7 @@ Sets a value to an actuator and confirms the interaction through a reaction mess
 
 This device is set to its max. value(0xff)
 
-# device.Scan();
+# device.Scan(short[] buffer);
 
 Scans for sister/brother devices on the same board as the device mentioned. Then returns their current virtual IDs in Byte format(see table below)
 
