@@ -25,9 +25,16 @@ https://www.openhardware.io/view/33050
 
 Since information has to be returned if some functions are called they have to be provided with a sufficient **buffer** array. This also means that if you request 6 values but only provide an array with length 3, only the first 3 values will be filled in.
 
-**device.Get();**
+# device.Get();**
 
 Gets the value of device based on the data type. IMPORTANT!: Filtered values are calculated using the gliding average method and only for currently active devices. If a previously inactive device is asked for a filtered value it will first return an unfiltered value and activate the filter task. If a second value is requested before the task times out(currently a 10 second window) an actually filtered value will be returned. 
+**Example:** 
+
+**short[] buffer = {0,0,0};**
+
+**gyro1.Get(buffer,"second-filtered");**
+
+This would return the 3rd to 6th value the sensor provides, in this case the accelerometer values of an IMU
 
 Data types:
 - all-filtered:    as many data values as the sensor provides but filtered through gliding average
@@ -36,13 +43,22 @@ Data types:
 - second-filtered: second three data...
 - third-filtered:  ...
 
-**device.Set();**
+# device.Set();**
 
 Sets a value to an actuator and confirms the interaction through a reaction message
 
-**device.Scan();**
+**relay0.Set(255)**
+This device is set to its max. value(0xff)
+
+# device.Scan();
 
 Scans for sister/brother devices on the same board as the device mentioned. Then returns their current virtual IDs in Byte format(see table below)
+
+**short[] buffer;**
+
+**magneto2.Scan(buffer);**
+
+Returns the byte address of every interactable connected to the same MCU as this device
 
 
 # Virtual ID Table:
