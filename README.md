@@ -1,6 +1,8 @@
 # VR-Shield-Unity
 Unity SDK needed to access data from VR-Shield board over Bluetooth
 
+https://www.openhardware.io/view/33050
+
 # Installation:
 
 1.  clone the game object into your -missing- folder 
