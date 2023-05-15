@@ -5,16 +5,17 @@ https://www.openhardware.io/view/33050
 
 # Installation:
 
-1.  clone the game object into your -missing- folder 
+1.  clone the required assets(5 scripts) into your projects /Assets/ folder 
 2.  boot Unity.
-3.  drag and drop the folder into your scene. 
-4.  Switch from ... to ...(Thing to make ports work)
-5.  Save your project
-6.  Congratulation, the SDK is installed now
+3.  Create an empty game object called "PortManager"
+4.  drag and drop the script "Port Manager" into that object
+5.  File->Build Settings->Player Settings...->Configuration->Player->Api Compatibility Level: Set to ".NET Framework" (Not .NET Standard 2.x)
+6.  Save your project
+7.  Congratulation, the SDK is installed now
 
 # Device Management:
 
-- To manage and create MCU Board or individual sensors click on the "Ports Manager" game object and use the dropdown menus.
+- To manage and create MCU boards or individual sensors click on the "Ports Manager" game object and use the dropdown menus.
 - Each board is adressed by a number between 00 and 99
 - Each sensor is adressed by the type(specified by three capital letters) and a number between 00 and 03(e.g. MPU01)
 - Additionally custom designations can be assigned to that fixed adress for both the board and sensors
@@ -27,6 +28,13 @@ Since information has to be returned if some functions are called they have to b
 **device.Get();**
 
 Gets the value of device based on the data type. IMPORTANT!: Filtered values are calculated using the gliding average method and only for currently active devices. If a previously inactive device is asked for a filtered value it will first return an unfiltered value and activate the filter task. If a second value is requested before the task times out(currently a 10 second window) an actually filtered value will be returned. 
+
+Data types:
+- all filtered:    as many data values as the sensor provides but filtered through gliding average
+- all-raw:         as many data values as the sensor provides but unfiltered straight from the sensor(could have a higher delay since fresh value has to be                        fetched)
+- first-filtered:  first three data values from the sensor
+- second-filtered: second three data...
+- third-filtered:  ...
 
 **device.Set();**
 
