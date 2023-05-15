@@ -30,9 +30,9 @@ Since information has to be returned if some functions are called they have to b
 Gets the value of device based on the data type. IMPORTANT!: Filtered values are calculated using the gliding average method and only for currently active devices. If a previously inactive device is asked for a filtered value it will first return an unfiltered value and activate the filter task. If a second value is requested before the task times out(currently a 10 second window) an actually filtered value will be returned. 
 
 Data types:
-- all filtered:    as many data values as the sensor provides but filtered through gliding average
+- all-filtered:    as many data values as the sensor provides but filtered through gliding average
 - all-raw:         as many data values as the sensor provides but unfiltered straight from the sensor(could have a higher delay since fresh value has to be                        fetched)
-- first-filtered:  first three data values from the sensor
+- first-filtered:  first three data values from the sensor, filtered in the same manner as "all-filtered"
 - second-filtered: second three data...
 - third-filtered:  ...
 
